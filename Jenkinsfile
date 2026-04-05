@@ -21,10 +21,13 @@ pipeline {
 
 	stage('Run App') {
 		steps {
-			sh 'node server.js &'
+			sh '''
+			apk add --no-cache curl
+			node server.js &
 			sleep 5
-			sh 'curl localhost:3000'
-			}
+			curl localhost:3000
+			'''			 
+}
 		}
 	}
 }
