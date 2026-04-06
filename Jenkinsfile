@@ -24,19 +24,8 @@ pipeline {
 	stage('Run App') {
 		steps {
                sh '''
-        echo "=== CURRENT DIR ==="
-        pwd
-
-        echo "=== FILES ==="
-        ls -l
-
-        echo "=== NODE VERSION ==="
-        node -v
-
-        echo "=== STARTING APP ==="
-        pkill node || true
-
-        node server.js
+	pkill node || true
+        nohup node server.js > app.log 2>&1 &        
         '''
 								 
 }
