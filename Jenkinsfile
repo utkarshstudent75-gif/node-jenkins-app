@@ -24,15 +24,21 @@ pipeline {
 	stage('Run App') {
 		steps {
 			sh '''
-			echo "current directory:"
+			echo "=== DEBUG START ==="
 			pwd
-
-			echo "Files in directory:"
 			ls -l
 
 			pkill node || true
 
 			nohup node server.js > app.log 2>&1 &
+
+			sleep 2
+
+			echo  "=== AFTER START ==="
+			ps aux | grep node
+		
+			echo "=== LOG CONTENT ==="
+			cat app.log || echo "No log file"
 			'''			 
 }
 		}
