@@ -24,7 +24,9 @@ pipeline {
 	stage('Run App') {
 		steps {
 			sh '''
-			cd /home/ubuntu/node-jenkins-app
+			pwd
+			ls -l
+
 
 			pkill node || true
 
@@ -33,9 +35,7 @@ pipeline {
 			sleep 2
 
 		
-			ps aux | grep node
-		
-		
+			ps aux | grep node		
 			'''			 
 }
 		}
