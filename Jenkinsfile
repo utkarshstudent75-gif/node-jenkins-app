@@ -24,9 +24,7 @@ pipeline {
 	stage('Run App') {
 		steps {
 			sh '''
-			echo "=== DEBUG START ==="
-			pwd
-			ls -l
+			cd /home/ubuntu/node-jenkins-app
 
 			pkill node || true
 
@@ -34,11 +32,10 @@ pipeline {
 
 			sleep 2
 
-			echo  "=== AFTER START ==="
+		
 			ps aux | grep node
 		
-			echo "=== LOG CONTENT ==="
-			cat app.log || echo "No log file"
+		
 			'''			 
 }
 		}
