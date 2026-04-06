@@ -23,20 +23,22 @@ pipeline {
 
 	stage('Run App') {
 		steps {
-			sh '''
-			pwd
-			ls -l
+               sh '''
+        echo "=== CURRENT DIR ==="
+        pwd
 
+        echo "=== FILES ==="
+        ls -l
 
-			pkill node || true
+        echo "=== NODE VERSION ==="
+        node -v
 
-			nohup node server.js > app.log 2>&1 &
+        echo "=== STARTING APP ==="
+        pkill node || true
 
-			sleep 2
-
-		
-			ps aux | grep node		
-			'''			 
+        node server.js
+        '''
+								 
 }
 		}
 	}
