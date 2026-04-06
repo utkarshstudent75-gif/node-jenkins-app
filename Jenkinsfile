@@ -24,10 +24,8 @@ pipeline {
 	stage('Run App') {
 		steps {
 			sh '''
-			apk add --no-cache curl
-			node server.js &
-			sleep 5
-			curl localhost:3000
+			pkill node || true
+			nohup node server.js > app.log 2>&1 &
 			'''			 
 }
 		}
